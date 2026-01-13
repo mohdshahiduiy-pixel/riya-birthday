@@ -1,0 +1,126 @@
+/* =========================== BODY & CARD =========================== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #ffe4e1;
+  overflow-x: hidden;
+}
+
+.card {
+  max-width: 95%;
+  margin: 40px auto;
+  padding: 25px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 5;
+}
+
+h1 {
+  text-align: center;
+  color: #ff69b4;
+  margin-bottom: 10px;
+}
+
+.name {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ff4500;
+  margin-bottom: 15px;
+}
+
+/* =========================== LETTER + PHOTO LAYOUT =========================== */
+.content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.letter {
+  flex: 1;
+  background: #fff0f5;
+  padding: 15px;
+  border-radius: 12px;
+  height: 600px;
+  overflow-y: auto;
+  line-height: 1.5em;
+  white-space: pre-line;
+}
+
+.photo-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.photo-card {
+  width: 300px;  /* adjust width as per screenshot */
+  height: 600px; /* adjust height as per screenshot */
+  border-radius: 15px;
+}
+
+/* Heart on photo */
+.photo-heart {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 2em;
+  color: red;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.2); }
+}
+
+/* =========================== BUTTONS =========================== */
+.buttons {
+  text-align: center;
+  margin-top: 15px;
+}
+
+button {
+  padding: 10px 18px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 8px;
+  background: #ff69b4;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff1493;
+}
+
+/* =========================== FLOATING HEARTS =========================== */
+#floatingHearts span {
+  position: fixed;
+  font-size: 1.5em;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* =========================== FIREWORKS CANVAS =========================== */
+canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================== MOBILE =========================== */
+@media (max-width: 600px) {
+  .content {
+    flex-direction: column;
+  }
+  .letter, .photo-wrapper, .photo-card {
+    width: 100%;
+    height: auto;
+  }
+  .photo-heart {
+    font-size: 1.8em;
+  }
+}
