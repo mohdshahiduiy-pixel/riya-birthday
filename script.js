@@ -164,6 +164,11 @@ const sparks = Array.from({length: 80}, () => ({
   r: Math.random() * 2 + 1,
   c: `hsl(${Math.random()*360},100%,50%)`
 }));
+function playSong() {
+  const song = document.getElementById("birthdaySong");
+  song.play();
+}
+
 
 function animate() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
