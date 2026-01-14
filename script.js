@@ -1,10 +1,10 @@
-/* ================= LETTER TEXT ================= */
+/* ================= LETTER ================= */
 const shortText = `Dear Riya 🌸
 
 Some moments feel small at first,
 but they stay with us quietly 🦋`;
 
-const fullText = `Dear Riya, 🌸
+const fullText = `Dear Riya 🌸
 
 I don’t really know yet what I feel in my heart for you 💛,
 or what you think about me — and I understand that you might see me as just a friend, nothing more than that 🤍.
@@ -88,19 +88,19 @@ and I truly value it —
 deeply and sincerely 💖.
 `;
 
-/* ================= TYPEWRITER ================= */
+
 const letterBox = document.getElementById("letterBox");
 let typing = false;
 
 function typeText(text) {
   if (typing) return;
   typing = true;
-  letterBox.innerHTML = ""; // <-- innerHTML for line breaks
+  letterBox.innerHTML = "";
   let i = 0;
 
   function type() {
     if (i < text.length) {
-      letterBox.innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+      letterBox.innerHTML += text[i] === "\n" ? "<br>" : text[i];
       i++;
       setTimeout(type, 30);
     } else {
@@ -110,86 +110,75 @@ function typeText(text) {
   type();
 }
 
-/* Initial text */
 typeText(shortText);
 
+/* ================= AUDIO (SAFE) ================= */
+const song = document.getElementById("birthdaySong");
+
+function playSong() {
+  song.volume = 1;
+  song.play().catch(() => {
+    alert("Tap the screen once, then press Play 🎵");
+  });
+}
+
 /* ================= BUTTONS ================= */
-document.getElementById("confessBtn").onclick = () => {
+document.getElementById("musicBtn").addEventListener("click", playSong);
+
+document.getElementById("confessBtn").addEventListener("click", () => {
   typeText(fullText);
-};
+});
 
-document.getElementById("surpriseBtn").onclick = () => {
-  for (let i = 0; i < 20; i++) createHeart();
-};
+document.getElementById("surpriseBtn").addEventListener("click", () => {
+  playSong();
+  for (let i = 0; i < 15; i++) createHeart();
+});
 
-/* ================= FLOATING HEARTS ================= */
+/* ================= HEARTS ================= */
 const heartBox = document.getElementById("floatingHearts");
 
 function createHeart() {
   const heart = document.createElement("span");
-  heart.innerText = "❤️";
+  heart.textContent = "❤️";
   heart.style.left = Math.random() * window.innerWidth + "px";
   heart.style.top = window.innerHeight + "px";
   heartBox.appendChild(heart);
 
   let y = window.innerHeight;
-  const speed = 1 + Math.random() * 2;
-
   function move() {
-    y -= speed;
+    y -= 2;
     heart.style.top = y + "px";
-    heart.style.opacity = y / window.innerHeight;
     if (y < -50) heart.remove();
     else requestAnimationFrame(move);
   }
   move();
 }
 
-setInterval(createHeart, 400);
-
 /* ================= FIREWORKS ================= */
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 
-function resizeCanvas() {
+function resize() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+resize();
+window.addEventListener("resize", resize);
 
-const sparks = Array.from({length: 80}, () => ({
+const sparks = Array.from({ length: 80 }, () => ({
   x: Math.random() * canvas.width,
-  y: Math.random() * canvas.height / 2,
-  r: Math.random() * 2 + 1,
-  c: `hsl(${Math.random()*360},100%,50%)`
+  y: Math.random() * canvas.height,
+  r: Math.random() * 2 + 1
 }));
-function playSong() {
-  const song = document.getElementById("birthdaySong");
-
-  if (!song) {
-    alert("Audio not found");
-    return;
-  }
-
-  song.volume = 1.0;
-
-  song.play().catch(error => {
-    console.log("Play error:", error);
-    alert("Tap the screen once, then press play");
-  });
-}
-
-
 
 function animate() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "gold";
   sparks.forEach(s => {
     ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-    ctx.fillStyle = s.c;
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
     ctx.fill();
-    s.y -= 1.5;
+    s.y -= 1.2;
     if (s.y < 0) s.y = canvas.height;
   });
   requestAnimationFrame(animate);
