@@ -166,8 +166,20 @@ const sparks = Array.from({length: 80}, () => ({
 }));
 function playSong() {
   const song = document.getElementById("birthdaySong");
-  song.play();
+
+  if (!song) {
+    alert("Audio not found");
+    return;
+  }
+
+  song.volume = 1.0;
+
+  song.play().catch(error => {
+    console.log("Play error:", error);
+    alert("Tap the screen once, then press play");
+  });
 }
+
 
 
 function animate() {
