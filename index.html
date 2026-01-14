@@ -1,44 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Riya 🎉</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- Fireworks -->
+  <!-- Background Effects -->
   <canvas id="fireworks"></canvas>
-
-  <!-- Floating Hearts -->
   <div id="floatingHearts"></div>
 
-  <!-- Birthday Card -->
+  <!-- Audio (DO NOT AUTOPLAY) -->
+  <audio id="birthdaySong" src="song.mp3" preload="auto"></audio>
+
+  <!-- Card -->
   <div class="card">
     <h1>🎉 Happy Birthday 🎉</h1>
     <div class="name">❤️ Riya ✨</div>
 
     <div class="content">
-      <!-- LETTER -->
-      <div class="letter" id="letterBox"></div>
+      <div id="letterBox" class="letter"></div>
 
-      <!-- PHOTO -->
       <div class="photo-wrapper">
-        <img src="riya.jpg" alt="Riya" class="photo-card">
+        <img src="riya.jpg" class="photo-card" alt="Riya">
         <div class="photo-heart">❤️</div>
       </div>
     </div>
-<audio id="birthdaySong" src="song.mp3"></audio>
 
-    <!-- BUTTONS -->
     <div class="buttons">
-      <button id="surpriseBtn">Surprise</button>
-      <button id="confessBtn">Confess</button>
+      <button id="surpriseBtn">🎁 Surprise</button>
+      <button id="confessBtn">💌 Confess</button>
+      <button id="musicBtn">🎵 Play Song</button>
     </div>
   </div>
-<button onclick="playSong()">🎵 Play Song</button>
 
   <script src="script.js"></script>
 </body>
